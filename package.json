@@ -1,0 +1,46 @@
+{
+  "name": "itspider",
+  "version": "1.0.0",
+  "description": "crawler lagou data",
+  "main": "app.js",
+  "directories": {
+    "test": "test",
+    "crawler": "crawler",
+    "serve": "serve"
+  },
+  "scripts": {
+    "crawler": "node --harmony_async_await ./crawler/start.js",
+    "serve": "node --harmony_async_await ./app.js",
+    "preprocess":"python dataMining/train_data.py",
+    "analysis":"python dataMining/main.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.coding.net/hd_mysky/LagouSpider.git,https://github.com/hdmy/LogouSpider.git"
+  },
+  "keywords": [
+    "lagou",
+    "spider",
+    "analysis",
+    "random forest",
+    "Visualization"
+  ],
+  "author": "huangdan",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.5",
+    "bower": "^1.8.0",
+    "cheerio": "^0.22.0",
+    "config-lite": "^1.5.0",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.1",
+    "nodemailer": "^3.1.7",
+    "pug": "^2.0.0-beta11",
+    "querystring": "^0.2.0",
+    "superagent": "^3.5.1",
+    "superagent-proxy": "^1.0.2"
+  },
+  "devDependencies": {
+    "body-parser": "^1.17.1"
+  }
+}

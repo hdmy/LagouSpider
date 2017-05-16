@@ -1,0 +1,28 @@
+{
+  "name": "itsoider",
+  "description": "crawler lagou data",
+  "main": "app.js",
+  "authors": [
+    "huangdan"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "lagou",
+    "spider"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "fullPage": "https://github.com/alvarotrigo/fullPage.js/",
+    "jquery": "^3.2.1",
+    "echarts": "^3.5.2"
+  }
+}

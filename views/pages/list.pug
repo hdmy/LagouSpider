@@ -1,0 +1,28 @@
+extends ../layout
+block content
+ .container
+  .row
+   table.table.table-hover.table-bordered
+    thead
+     tr
+      th 公司全名
+      th 公司简称
+      th 公司规模
+      th 招聘职位
+      th 工作经验
+      th 学历要求
+      th 工资待遇
+      th 定位
+      th 详情
+     tbody
+      each item in jobs
+       tr(class='item-id-#{item._id}')
+        td #{item.companyFullName}
+        td #{item.companyShortName}
+        td #{item.companySize}
+        td #{item.positionName}
+        td #{item.workYear}
+        td #{item.education}
+        td #{item.salary}
+        td #{item.city}·#{item.district}
+        td: a(target='_blank',href='//www.lagou.com/jobs/#{item.positionId}.html') 查看

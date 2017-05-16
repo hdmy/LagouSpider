@@ -1,0 +1,373 @@
+extends ../layout
+block content
+  div.echarts#fullPage(style='display:none')
+   div.section#predict(style='height:100vh;width:100vw')
+    h1.col-sm-2(style='margin-left:5%') 薪资预测
+    form.form-horizontal.col-sm-7#predictForm
+     div.form-group
+      label.col-sm-3.control-label 工作经验
+      div.col-sm-7
+       select.form-control(name='workYear')
+        option 应届毕业生
+        option 1年以下
+        option 1-3年
+        option 3-5年
+        option 5-10年
+        option 10年以上
+        option 不限
+     div.form-group
+      label.col-sm-3.control-label 职位类别
+      div.col-sm-7
+       select.form-control(name='positionTag')
+        option 后端开发
+        option 移动开发
+        option 前端开发
+        option 测试
+        option 运维
+        option DBA
+        option 高端职位
+        option 项目管理
+        option 硬件开发
+        option 企业软件
+     div.form-group
+      label.col-sm-3.control-label 工作地区
+      div.col-sm-7
+       select.form-control(name='city')
+        option 北京
+        option 上海
+        option 广州
+        option 深圳
+        option 杭州
+        option 成都
+        option 东莞
+        option 中卫
+        option 雅安
+        option 延边
+        option 益阳
+        option 孝感
+        option 许昌
+        option 襄阳
+        option 铜仁
+        option 台中
+        option 上饶
+        option 信阳
+        option 黔西南
+        option 铜陵
+        option 黔南
+        option 莆田
+        option 龙岩
+        option 宜春
+        option 六安
+        option 宁德
+        option 乐山
+        option 吉安
+        option 黄冈
+        option 赣州
+        option 阜阳
+        option 黄石
+        option 滁州
+        option 宿州
+        option 亳州
+        option 丽江
+        option 眉山
+        option 池州
+        option 蚌埠
+        option 高雄
+        option 玉林
+        option 新乡
+        option 三沙
+        option 南阳
+        option 广元
+        option 郴州
+        option 安顺
+        option 海门
+        option 鄂尔多斯
+        option 招远
+        option 舟山
+        option 齐齐哈尔
+        option 盐城
+        option 赤峰
+        option 青岛
+        option 乳山
+        option 金昌
+        option 泉州
+        option 莱西
+        option 日照
+        option 胶南
+        option 南通
+        option 拉萨
+        option 云浮
+        option 梅州
+        option 文登
+        option 攀枝花
+        option 威海
+        option 承德
+        option 厦门
+        option 汕尾
+        option 潮州
+        option 丹东
+        option 太仓
+        option 曲靖
+        option 烟台
+        option 福州
+        option 瓦房店
+        option 即墨
+        option 抚顺
+        option 玉溪
+        option 张家口
+        option 阳泉
+        option 莱州
+        option 湖州
+        option 汕头
+        option 昆山
+        option 宁波
+        option 湛江
+        option 揭阳
+        option 荣成
+        option 连云港
+        option 葫芦岛
+        option 常熟
+        option 河源
+        option 淮安
+        option 泰州
+        option 南宁
+        option 营口
+        option 惠州
+        option 江阴
+        option 蓬莱
+        option 韶关
+        option 嘉峪关
+        option 延安
+        option 太原
+        option 清远
+        option 中山
+        option 昆明
+        option 寿光
+        option 盘锦
+        option 长治
+        option 珠海
+        option 宿迁
+        option 咸阳
+        option 铜川
+        option 平度
+        option 佛山
+        option 海口
+        option 江门
+        option 章丘
+        option 肇庆
+        option 大连
+        option 临汾
+        option 吴江
+        option 石嘴山
+        option 沈阳
+        option 苏州
+        option 茂名
+        option 嘉兴
+        option 长春
+        option 胶州
+        option 银川
+        option 张家港
+        option 三门峡
+        option 锦州
+        option 南昌
+        option 柳州
+        option 三亚
+        option 自贡
+        option 吉林
+        option 阳江
+        option 泸州
+        option 西宁
+        option 宜宾
+        option 呼和浩特
+        option 大同
+        option 镇江
+        option 桂林
+        option 张家界
+        option 宜兴
+        option 北海
+        option 西安
+        option 金坛
+        option 东营
+        option 牡丹江
+        option 遵义
+        option 绍兴
+        option 扬州
+        option 常州
+        option 潍坊
+        option 重庆
+        option 台州
+        option 南京
+        option 滨州
+        option 贵阳
+        option 无锡
+        option 本溪
+        option 克拉玛依
+        option 渭南
+        option 马鞍山
+        option 宝鸡
+        option 焦作
+        option 句容
+        option 徐州
+        option 衡水
+        option 包头
+        option 绵阳
+        option 乌鲁木齐
+        option 枣庄
+        option 杭州
+        option 淄博
+        option 鞍山
+        option 溧阳
+        option 库尔勒
+        option 安阳
+        option 开封
+        option 济南
+        option 德阳
+        option 温州
+        option 九江
+        option 邯郸
+        option 临安
+        option 兰州
+        option 沧州
+        option 临沂
+        option 南充
+        option 天津
+        option 富阳
+        option 泰安
+        option 诸暨
+        option 郑州
+        option 哈尔滨
+        option 聊城
+        option 芜湖
+        option 唐山
+        option 平顶山
+        option 邢台
+        option 德州
+        option 济宁
+        option 荆州
+        option 宜昌
+        option 义乌
+        option 丽水
+        option 洛阳
+        option 秦皇岛
+        option 株洲
+        option 石家庄
+        option 莱芜
+        option 常德
+        option 保定
+        option 湘潭
+        option 金华
+        option 岳阳
+        option 长沙
+        option 衢州
+        option 廊坊
+        option 菏泽
+        option 合肥
+        option 武汉
+        option 大庆
+     div.form-group
+      label.col-sm-3.control-label 学历要求
+      div.col-sm-7
+       select.form-control(name='education')
+        option 本科
+        option 硕士
+        option 博士
+        option 大专
+        option 不限
+     div.form-group
+      label.col-sm-3.control-label 融资状况
+      div.col-sm-7
+       select.form-control(name='financeStage') 
+        option 无
+        option 不需要融资
+        option 初创型(不需要融资)
+        option 初创型(天使轮)
+        option 初创型(未融资)
+        option 成长型(A轮)
+        option 成长型(B轮)
+        option 成长型(不需要融资)
+        option 成熟型(不需要融资)
+        option 成熟型(C轮)
+        option 成熟型(D轮及以上)
+        option 上市公司
+     div.form-group
+      label.col-sm-3.control-label 公司规模
+      div.col-sm-7
+       select.form-control(name='companySize') 
+        option 无
+        option 少于15人
+        option 15-50人
+        option 50-150人
+        option 150-500人
+        option 500-2000人
+        option 2000人以上
+     div.form-group
+      div.col-sm-offset-5.col-sm-4
+       button.btn.btn-primary#start(style='padding:6px 35px') Go!
+     div.form-group(style='font-size:17px')
+      label.col-sm-3.control-label 预测薪资水平
+      div.col-sm-7
+       p.form-control-static#result 
+   div.section#MapNum(style='height:100vh;width:100vw')
+   div.section#MapSalary(style='height:100vh;width:100vw')
+   div.section#jobCategory(style='height:100vh;width:100vw')
+   div.section#hotCity(style='height:100vh;width:100vw')
+   //- div.section#dailyNum(style='height:100vh;width:100vw')
+   div.section#jobSalary(style='height:100vh;width:100vw')
+   //- div.section#salaryRange(style='height:100vh;width:100vw')
+   div.section#education(style='height:100vh;width:100vw')
+   div.section#workYear(style='height:100vh;width:100vw')
+   div.section#finance(style='height:100vh;width:100vw')
+   div.section#ability(style='height:100vh;width:100vw')
+  script(src="/libs/fullPage/jquery.fullPage.min.js")
+  script.
+   $doc = $(document);
+   $doc.find("#fullPage").fullpage({
+      navigation: true, // 导航
+      navigationTooltips:['薪资预测','全国各地区职业总量','全国各地区职业平均薪资','各职业总数量、平均薪资','Top 25 职位数量比、薪资比','技术类职业最高、最低薪资','不同学历下的职业数量比、薪资比','不同工作经验下的职业数量比、薪资比', '不同融资阶段的公司数量比、平均薪资','不同职业在不同工作经验下的平均薪资'],
+      css3:true
+   });
+   $doc.find("#fullPage").show();
+   $doc.find("#start").click(function () {
+    $.ajax({
+     type: "post",
+     url: '/predict',
+     data: $doc.find("#predictForm").serialize(),
+     beforeSend:function(){
+      $doc.find('#start').attr('disabled', true);
+      $doc.find('select').attr('disabled', true);
+      $doc.find('#result').text('Loading....');
+     },
+     success: function (data) {
+      $doc.find('#result').text(data);
+     },
+     error: function (e) {
+      $doc.find('#result').text('请重新尝试!');
+     },
+     complete: function (XMLHttpRequest, textStatus) {
+      $doc.find('#start').attr('disabled', false);
+      $doc.find('select').attr('disabled', false);
+     }
+    });
+    return false;
+   });
+  style.
+   #predict{
+     background: url(/image/bg1.jpg) no-repeat;
+     background-size:cover;
+     font-size:16px;
+     font-weight:bolder;
+   }
+   #predictForm{
+     border-left:1px solid #000;
+   }
+   .form-control-static{
+     min-height:38px;
+   }
+   #fp-nav ul li .fp-tooltip{
+     color:#d4d4d4;
+     max-width:270px;
+   }
+  script(src="/libs/echarts/dist/echarts.js")
+  script(src="/libs/echarts/map/js/china.js")
+  script(src="/js/visualize.js")
+  
