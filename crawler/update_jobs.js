@@ -119,8 +119,14 @@ async function crawlerJobs(city, position, page) {
       success = true;
     }
 
+    // 1.该职位无数据 | 请求无效
+    if (json.content.pageNo == 0) {
+      log(city, position.name, '无数据');
+      return resolve();
+    }
+
     totalCount = json.content.positionResult.totalCount;
-    // 当前城市无数据，或与数据库相同，无需更新
+    // 2.当前城市无数据，或与数据库相同，无需更新
     if (position == '') {
       if (totalCount == 0 || totalCount == totals[city]) return resolve(0);
       else return resolve(1);
@@ -131,12 +137,6 @@ async function crawlerJobs(city, position, page) {
     pageCount = Math.ceil(totalCount / pageSize);
 
     log(`------Info:${city} ${position.name} page: ${page} ,totalCount: ${totalCount}, pageCount: ${pageCount}`);
-
-    // 2.该职位无数据 | 请求无效
-    if (json.content.pageNo == 0) {
-      log(city, position.name, '无数据');
-      return resolve();
-    }
 
     // 3.存储jobs
     hasNext = await setInDb(city, position, jobResult,hasNext);
@@ -205,55 +205,59 @@ function transform(item) {
   return item;
 }
 
-process.on('uncaughtException', (err) => {
-  warn(err);
-})
-
-d.on('error', function (err) {
-  console.error('Error caught by domain:', err);
-  fs.writeFile("crash.txt", err.stack);
-});
-
-d.run(function () {
-  _async.auto({
-    // 1.获取cookie
-    getCookie: async(callback) => {
-      global.Cookie = '';
-      var option = {
-        Accept: '*/*'
-      };
-      try {
-        var res1 = await request.get('https://www.lagou.com/');
-        var res2 = await request.get('https://a.lagou.com/collect').set(option);
-      } catch (error) {
-        callback(error);
-      }
-      util.fetchCookie(res1.header['set-cookie'], 'JSESSIONID');
-      util.fetchCookie(res2.header['set-cookie'], ['user_trace_token', 'LGUID']);
-      callback();
-    },
-    // 2.完成后获取Job
-    getJobs: ['getCookie', async(res, callback) => {
-      try {
-        await updateJobs();
-      } catch (error) {
-        callback(err);
-      }
-      callback();
-    }],
-  }, async function (err, results) {
-    if (err) {
+module.exports = () => {
+  return new Promise((resolve, reject) => {
+    process.on('uncaughtException', (err) => {
       warn(err);
-      process.exit();
-    }
-    try {
-      log(`-------更新统计分析结果-------`);
-      await statistic();
-    } catch (error) {
-      warn(err);
-      process.exit();
-    }
-    log(`-------Update Over-------`);
-    process.exit();
-  });
-});
+    })
+
+    d.on('error', function (err) {
+      console.error('Error caught by domain:', err);
+      fs.writeFile("crash.txt", err.stack);
+    });
+
+    d.run(function () {
+      _async.auto({
+        // 1.获取cookie
+        getCookie: async (callback) => {
+          global.Cookie = '';
+          var option = {
+            Accept: '*/*'
+          };
+          try {
+            var res1 = await request.get('https://www.lagou.com/');
+            var res2 = await request.get('https://a.lagou.com/collect').set(option);
+          } catch (error) {
+            callback(error);
+          }
+          util.fetchCookie(res1.header['set-cookie'], 'JSESSIONID');
+          util.fetchCookie(res2.header['set-cookie'], ['user_trace_token', 'LGUID']);
+          callback();
+        },
+        // 2.完成后获取Job
+        getJobs: ['getCookie', async (res, callback) => {
+          try {
+            await updateJobs();
+          } catch (error) {
+            callback(err);
+          }
+          callback();
+        }],
+      }, async function (err, results) {
+        if (err) {
+          warn(err);
+          process.exit();
+        }
+        try {
+          log(`-------更新统计分析结果-------`);
+          await statistic();
+        } catch (error) {
+          warn(err);
+          process.exit();
+        }
+        log(`-------Update Over-------`);
+        process.exit();
+      });
+    });
+  })
+}

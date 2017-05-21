@@ -92,12 +92,7 @@ d.run(function () {
       // 秒 分 时 天 月 周
       schedule.scheduleJob('0 38 14 * * *', function () {
         console.log(`-------开始定时更新任务-------`);
-        var cmd = 'node ' + path.join(__dirname, 'update_jobs.js');
-        require('child_process').exec(cmd, (err, stdout, stderr) => {
-          if (err) {
-            console.log('update error:', err);
-          }
-        });
+        require('./update_jobs')();
       });
     }
     scheduleCronstyle();

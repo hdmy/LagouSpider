@@ -32,7 +32,7 @@ function post({ city, data, proxy }) {
           err.code !== 'ECONNABORTED' && err.code !== 'ECONNRESET' && console.log(err);
           return reject(err);
         }
-        if (res.body.hasOwnProperty('success')) return resolve(res.body);
+        if (res.body.hasOwnProperty('success') && res.body.success == true) return resolve(res.body);
         reject(new Error('post request error'));
       });
   })
