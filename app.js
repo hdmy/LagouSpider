@@ -19,7 +19,11 @@ app.get('/db', async (req, res, next) => {
     cmd.push({ $match: { positionTag: '技术' } });
     cmd.push({ $sort: { createTime: -1 } });
     cmd.push({ $limit: 200 });
-    var jobs = await require('./public/js/controldb').aggregateJob(cmd);
+    try{
+        var jobs = await require('./public/js/controldb').aggregateJob(cmd);
+    } catch (err){
+        if(err) jobs = await require('./public/js/controldb').aggregateJob(cmd);
+    }
     res.render('list', {
         title: '计算机相关岗位数据列表',
         jobs: jobs
